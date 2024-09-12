@@ -2,7 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const app = express();
 
-const ninetyDaysInSeconds = 90*24*60*60;
+const timeInSeconds = 90*24*60*60;
 
 app.use(helmet.hidePoweredBy({setTo: 'PHP/5.4.0'}));
 app.use(helmet.frameguard({ action: 'deny' }));
