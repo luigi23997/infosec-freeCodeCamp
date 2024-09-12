@@ -6,7 +6,7 @@ app.use(helmet.hidePoweredBy({setTo: 'PHP/5.4.0'}));
 app.use(helmet.frameguard({ action: 'deny' }));
 app.use(helmet.xssFilter({}));
 app.use(helmet.noSniff({}));
-
+app.use(helmet.ieNoOpen({}));
 
 
 
