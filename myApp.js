@@ -4,7 +4,7 @@ const app = express();
 
 const timeInSeconds = 90*24*60*60;
 
-app.use(helmet.hidePoweredBy({setTo: 'PHP/5.4.0'}));
+/*app.use(helmet.hidePoweredBy({setTo: 'PHP/5.4.0'}));
 app.use(helmet.frameguard({ action: 'deny' }));
 app.use(helmet.xssFilter({}));
 app.use(helmet.noSniff({}));
@@ -12,8 +12,26 @@ app.use(helmet.ieNoOpen({}));
 app.use(helmet.hsts({maxAge: timeInSeconds, force: true}));
 app.use(helmet.dnsPrefetchControl());
 app.use(helmet.noCache());
-app.use(helmet.contentSecurityPolicy({directives: {defaultSrc: ["'self'"], scriptSrc: ["'self'", "trusted-cdn.com"]}}));
+app.use(helmet.contentSecurityPolicy({directives: {defaultSrc: ["'self'"], scriptSrc: ["'self'", "trusted-cdn.com"]}}));*/
 
+
+app.use(helmet({
+  frameguard: {
+    action: 'deny'
+  },
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "trusted-cdn.com"],
+    }
+  },
+  xPoweredBy: false,
+  noCache: true,
+  dnsPrefetchControl: true,
+  ieNoOpen: true,
+  noSniff: true,
+  xssFilter: true,
+}));
 
 module.exports = app;
 const api = require('./server.js');
